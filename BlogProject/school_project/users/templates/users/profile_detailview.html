@@ -11,8 +11,12 @@
     </div>
 
     <div class="article-metadata">
-      <h4>About {{ user.username }}</h1>
+      <h4>Posts by {{ user.username }} </h1>
     </div>
+    {% for posts in userposts %}
+      <h5>{{ posts.title }}</h5>
+      <p>{{ posts.content }}</p>
+    {% endfor %}
 
   </div>
 {% endblock content %}

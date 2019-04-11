@@ -4,8 +4,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
-from .models import Profile
 from django.contrib.auth.models import User
+from blog.models import Post
 
 # Create your views here.
 def register(request):
@@ -27,6 +27,7 @@ class ProfileDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'User'
+        context['userposts'] = Post.objects.filter(author=self.kwargs['pk']).values()
         return context
 
 
